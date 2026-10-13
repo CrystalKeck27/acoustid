@@ -22,6 +22,7 @@
       rust-analyzer
       release-plz
       gh
+      cargo-semver-checks
     ]);
     ci = mkRustShell (with pkgs; [
       cargo

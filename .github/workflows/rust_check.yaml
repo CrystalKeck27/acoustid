@@ -76,6 +76,5 @@ jobs:
       - name: Run clippy
         run: nix develop --command cargo clippy -- -D warnings
 
-      - name: Run async tests
-        # Check only async + ratelimit. This allows faster testing
+      - name: Run tests
         run: nix develop --command cargo test

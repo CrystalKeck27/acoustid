@@ -1,4 +1,4 @@
-use acoustid::AcoustidClient;
+use acoustid::AcoustIDClient;
 use std::error::Error;
 
 #[tokio::main]
@@ -8,7 +8,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
         .ok_or("usage: cargo run --example list_by_mbid -- <musicbrainz-recording-id>")?;
 
     // This endpoint does not require an application key.
-    let client = AcoustidClient::new()?;
+    let client = AcoustIDClient::new()?;
     let response = client.list_by_mbid(&mbid).await?;
 
     println!(

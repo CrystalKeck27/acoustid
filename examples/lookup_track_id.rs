@@ -1,4 +1,4 @@
-use acoustid::{AcoustidClient, Metadata};
+use acoustid::{AcoustIDClient, Metadata};
 use std::error::Error;
 
 #[tokio::main]
@@ -8,7 +8,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
         .ok_or("usage: cargo run --example lookup_track_id -- <acoustid-track-id>")?;
     let application_key = std::env::var("ACOUSTID_APPLICATION_KEY")?;
 
-    let client = AcoustidClient::with_application_key(application_key)?;
+    let client = AcoustIDClient::with_application_key(application_key)?;
     let response = client
         .lookup_by_track_id(&track_id, &[Metadata::Recordings])
         .await?;

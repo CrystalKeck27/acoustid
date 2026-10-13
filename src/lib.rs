@@ -26,13 +26,13 @@ fn request_limiter() -> Arc<DefaultDirectRateLimiter> {
 /// are paced at 2.5 per second, below AcoustID's documented limit of 3 per second.
 /// This limiter is process-local; coordinate separately when using multiple processes.
 #[derive(Clone)]
-pub struct AcoustidClient {
+pub struct AcoustIDClient {
     http: HttpClient,
     application_key: Option<Arc<str>>,
     limiter: Arc<DefaultDirectRateLimiter>,
 }
 
-impl AcoustidClient {
+impl AcoustIDClient {
     /// Creates a client that can call endpoints which do not require an application key.
     pub fn new() -> Result<Self, AcoustidError> {
         Self::build(None)
@@ -141,7 +141,7 @@ impl AcoustidClient {
     }
 }
 
-impl Default for AcoustidClient {
+impl Default for AcoustIDClient {
     fn default() -> Self {
         Self::new().expect("create AcoustID HTTP client")
     }
@@ -295,7 +295,7 @@ mod tests {
 
     #[test]
     fn lookup_without_key_fails_before_networking() {
-        let client = AcoustidClient::new().unwrap();
+        let client = AcoustIDClient::new().unwrap();
         let error = tokio_test_block_on(client.lookup_by_track_id("track", &[])).unwrap_err();
         assert!(matches!(error, AcoustidError::MissingApplicationKey));
     }

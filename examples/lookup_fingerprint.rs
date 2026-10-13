@@ -1,4 +1,4 @@
-use acoustid::{AcoustidClient, Metadata};
+use acoustid::{AcoustIDClient, Metadata};
 use std::error::Error;
 
 #[tokio::main]
@@ -13,7 +13,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
     )?;
     let application_key = std::env::var("ACOUSTID_APPLICATION_KEY")?;
 
-    let client = AcoustidClient::with_application_key(application_key)?;
+    let client = AcoustIDClient::with_application_key(application_key)?;
     let response = client
         .lookup_by_fingerprint(
             duration,

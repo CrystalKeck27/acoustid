@@ -1,4 +1,4 @@
-use acoustid::{AcoustidClient, Metadata};
+use acoustid::{AcoustIDClient, Metadata};
 
 const TRACK_ID: &str = "9ff43b6a-4f16-427c-93c2-92307ca505e0";
 const RECORDING_MBID: &str = "4e0d8649-1f89-44f3-91af-4c0dbee81f28";
@@ -19,7 +19,7 @@ async fn live_fingerprint_lookup() {
     let Some(application_key) = application_key() else {
         return;
     };
-    let client = AcoustidClient::with_application_key(application_key).unwrap();
+    let client = AcoustIDClient::with_application_key(application_key).unwrap();
     let fingerprint: String = FINGERPRINT.split_whitespace().collect();
     let response = client
         .lookup_by_fingerprint(641, &fingerprint, &[Metadata::RecordingIds])
@@ -33,7 +33,7 @@ async fn live_track_id_lookup() {
     let Some(application_key) = application_key() else {
         return;
     };
-    let client = AcoustidClient::with_application_key(application_key).unwrap();
+    let client = AcoustIDClient::with_application_key(application_key).unwrap();
     let response = client
         .lookup_by_track_id(TRACK_ID, &[Metadata::RecordingIds])
         .await
@@ -43,7 +43,7 @@ async fn live_track_id_lookup() {
 
 #[tokio::test]
 async fn live_list_acoustids_by_mbid_without_application_key() {
-    let client = AcoustidClient::new().unwrap();
+    let client = AcoustIDClient::new().unwrap();
     let response = client
         .list_by_mbid(RECORDING_MBID)
         .await

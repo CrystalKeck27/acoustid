@@ -19,22 +19,15 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
-      - name: Install minimal toolchain
-        uses: actions-rs/toolchain@v1
-        with:
-          toolchain: stable
-          override: true
-          profile: minimal
+      - name: Install rust toolchain
+        uses: dtolnay/rust-toolchain@stable
 
       - uses: Swatinem/rust-cache@v2
 
       - name: Run rustdoc
         env:
           RUSTDOCFLAGS: -D warnings
-        uses: actions-rs/cargo@v1
-        with:
-          command: doc
-          args: --no-deps
+        run: cargo doc --no-deps
 
   checks:
     runs-on: ubuntu-latest

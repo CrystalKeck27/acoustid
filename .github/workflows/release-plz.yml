@@ -9,6 +9,9 @@ jobs:
   release-plz-release:
     name: Release-plz release
     runs-on: ubuntu-latest
+    environment:
+      name: deployment
+      deployment: true
     if: ${{ github.repository_owner == 'CrystalKeck27' }}
     permissions:
       contents: write

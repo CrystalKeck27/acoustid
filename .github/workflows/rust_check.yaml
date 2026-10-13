@@ -71,3 +71,5 @@ jobs:
 
       - name: Run tests
         run: nix develop .#ci --command cargo test
+        env:
+          ACOUSTID_APPLICATION_KEY: ${{ secrets.ACOUSTID_APPLICATION_KEY }}

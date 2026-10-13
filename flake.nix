@@ -15,10 +15,6 @@
         rustfmt
         clippy
         rust-analyzer
-        lld
-        wayland
-        libxkbcommon
-        libGL
       ];
       shellHook = ''
         export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:${builtins.toString (pkgs.lib.makeLibraryPath buildInputs)}";

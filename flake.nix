@@ -21,6 +21,7 @@
       clippy
       rust-analyzer
       release-plz
+      gh
     ]);
     ci = mkRustShell (with pkgs; [
       cargo
